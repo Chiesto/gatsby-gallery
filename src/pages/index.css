@@ -1,0 +1,37 @@
+#container{
+    background-color: black;
+    margin: 0;
+    padding: 20px;
+    background-size: cover;
+    height: 1800px;
+    
+}
+#headerContainer{
+    color: white;
+    width: 340px;
+    margin-left: 10%;
+}
+#gameContainer{
+    color: white;
+    width: 400px;
+    padding-left: 10px;
+    padding-bottom: 20px;
+    height: fit-content;
+}
+#submitBtn{
+    background-color: white;
+    border-radius: 10px;
+    margin-left: 10px;
+}
+#submitBtn:hover{
+    background-color: grey;
+}
+#emojiContainer{
+    background-color: grey;
+    border-radius: 10px;
+    width: fit-content;
+    margin-bottom: 10px;
+}
+#emojiContainer img{
+    height: 500px;
+}
