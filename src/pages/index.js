@@ -1,4 +1,4 @@
-import { dividerClasses } from "@mui/material"
+
 import * as React from "react";
 import {useState} from "react";
 
@@ -6,7 +6,7 @@ import {useState} from "react";
 
 const IndexPage = () => {
 
-  const [emojiArray, setEmojiArray] = useState({});
+  const [emojiObj, setEmojiObj] = useState({});
   const [isStarted, setIsStarted] = useState(false);
   const [display, setDisplay] = useState("");
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -54,19 +54,21 @@ const IndexPage = () => {
   const handleStartClick = (event)=>{
     event.preventDefault();
     const randomNumber = generateRandomNumber(0, emojiPuzzles.length-1);
-    setEmojiArray(emojiPuzzles[randomNumber]);
-    console.log(emojiPuzzles[randomNumber],emojiArray);
+    setEmojiObj(emojiPuzzles[randomNumber]);
+    console.log("Randomized Emoji Obj",emojiPuzzles[randomNumber],"actual emoji obj=>",emojiObj);
     setIsStarted(true);
   }
   
-  const handleFormSubmit = (guess, answer, event)=>{
-    event.preventDefault();
+  const handleFormSubmit = (guess, answer)=>{
+
+    console.log('Guess=>', guess, 'Answer=>', answer);
+    setIsSubmitted(true);
     if(guess === answer){
       setDisplay("YAY you Won!");
     }else{
       setDisplay("WRONG ANSWER");
     }
-    setIsSubmitted(true);
+    
   }
   
   
@@ -82,10 +84,10 @@ const IndexPage = () => {
       <div>
         {isStarted? (
           <>
-            {emojiArray.emojis.map(item=>(
-              <p>{item}</p>
+            {emojiObj.emojis.map((item, i)=>(
+              <p key={i}>{item}</p>
             ))}
-            <form onSubmit={()=>handleFormSubmit(guess,item.answer)}>
+            <form onSubmit={()=>handleFormSubmit(guess,emojiObj.answer)}>
               <input type="text" onChange={(event)=>setGuess(event.target.value)}/>
               <button type="submit"> Submit Answer </button>
             </form>
