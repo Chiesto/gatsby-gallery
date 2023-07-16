@@ -128,6 +128,7 @@ const links = [
 const IndexPage = () => {
 
   const [emojiArray, setEmojiArray] = useState([]);
+  const [isStarted, setIsStarted] = useState(false);
 
   const emojiPuzzles = [
     {
@@ -171,7 +172,12 @@ const IndexPage = () => {
   const handleStartClick = (event)=>{
     event.preventDefault();
     const randomNumber = generateRandomNumber(0, emojiPuzzles.length-1);
-    setEmojiArray(emojiPuzzles[randomNumber])
+    setEmojiArray(emojiPuzzles[randomNumber]);
+    setIsStarted(true);
+  }
+
+  const handleFormSubmit = ()=>{
+
   }
   
   
@@ -182,15 +188,24 @@ const IndexPage = () => {
         <h1>Emoji Guesser!</h1>
         <p>Guess the word based on the three emojis displayed</p>
         
-        <button onClick={handleStartClick}>Start!</button>
+        
       </div>
       <div>
-        {emojiArray.length>0? (
-          emojiArray.map(item=>(
-            <p>{item}</p>
-          ))
+        {isStarted? (
+          <>
+            {emojiArray.map(item=>(
+              <p>{item}</p>
+            ))}
+            <form onSubmit={handleFormSubmit}>
+              <input type="text"/>
+              <button type="submit"> Submit Answer </button>
+            </form>
+          </>
         ):(
-          <p>Press Start! to begin</p>
+          <>
+            <button type="button" onClick={handleStartClick}>Start!</button>
+            <p>Press Start! to begin</p>
+          </>
         )}
       </div>
     </div>
