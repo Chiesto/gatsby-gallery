@@ -51,7 +51,7 @@ const IndexPage = () => {
   const handleStartClick = (event)=>{
     event.preventDefault();
     const randomNumber = generateRandomNumber(0, emojiPuzzles.length-1);
-    setEmojiArray(emojiPuzzles[randomNumber]);
+    setEmojiArray(emojiPuzzles[randomNumber].emojis);
     console.log(emojiPuzzles[randomNumber],emojiArray);
     setIsStarted(true);
   }
