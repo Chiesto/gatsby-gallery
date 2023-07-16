@@ -59,8 +59,8 @@ const IndexPage = () => {
     setIsStarted(true);
   }
   
-  const handleFormSubmit = (guess, answer)=>{
-    
+  const handleFormSubmit = (guess, answer, event)=>{
+    event.preventDefault();
     if(guess === answer){
       setDisplay("YAY you Won!");
     }else{
