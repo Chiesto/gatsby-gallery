@@ -6,8 +6,11 @@ import {useState} from "react";
 
 const IndexPage = () => {
 
-  const [emojiArray, setEmojiArray] = useState([]);
+  const [emojiArray, setEmojiArray] = useState({});
   const [isStarted, setIsStarted] = useState(false);
+  const [display, setDisplay] = useState("");
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [guess, setGuess] = useState("");
 
   const emojiPuzzles = [
     {
@@ -51,13 +54,19 @@ const IndexPage = () => {
   const handleStartClick = (event)=>{
     event.preventDefault();
     const randomNumber = generateRandomNumber(0, emojiPuzzles.length-1);
-    setEmojiArray(emojiPuzzles[randomNumber].emojis);
+    setEmojiArray(emojiPuzzles[randomNumber]);
     console.log(emojiPuzzles[randomNumber],emojiArray);
     setIsStarted(true);
   }
-
-  const handleFormSubmit = ()=>{
-
+  
+  const handleFormSubmit = (guess, answer)=>{
+    
+    if(guess === answer){
+      setDisplay("YAY you Won!");
+    }else{
+      setDisplay("WRONG ANSWER");
+    }
+    setIsSubmitted(true);
   }
   
   
@@ -73,13 +82,14 @@ const IndexPage = () => {
       <div>
         {isStarted? (
           <>
-            {emojiArray?.map(item=>(
+            {emojiArray.emojis.map(item=>(
               <p>{item}</p>
             ))}
-            <form onSubmit={handleFormSubmit}>
-              <input type="text"/>
+            <form onSubmit={()=>handleFormSubmit(guess,item.answer)}>
+              <input type="text" onChange={(event)=>setGuess(event.target.value)}/>
               <button type="submit"> Submit Answer </button>
             </form>
+            {isSubmitted&& (<p>{display}</p>)}
           </>
         ):(
           <>
