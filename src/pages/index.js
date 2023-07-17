@@ -14,6 +14,7 @@ const IndexPage = () => {
   const [wrongAnswers, setWrongAnswers] = useState([]);
   const [rightAnswers, setRightAnswers] = useState([]);
   const [movieList, setMovieList] = useState([]);
+  const [hint, setHint] = useState("")
 
   
   function generateRandomNumber(min, max) {
@@ -41,6 +42,10 @@ const IndexPage = () => {
       setRightAnswers([...rightAnswers, guess]);
       setDisplay("YAY you Won!");
     }else{
+      const options = {month: 'long', year: 'numeric'};
+      const formattedDate = dateAnswer.toLocaleString('en-US', options);
+      console.log('HINT DATE=>',formattedDate);
+      setHint(`Hint: ${formattedDate}`);
       setWrongAnswers([...wrongAnswers, guess]);
       setDisplay("WRONG! Better luck next time :)")
       
@@ -98,6 +103,7 @@ const IndexPage = () => {
             {isSubmitted&& (
               <>
                 <p>{display}</p>
+                <p>{hint}</p>
                 <button onClick={handleStartClick}>Try Again</button>
               </>
             )}
