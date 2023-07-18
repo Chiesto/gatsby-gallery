@@ -87,6 +87,8 @@ const IndexPage = () => {
       <div id="headerContainer">
         <h1>Guess the release date!</h1>
         <p>Guess the date this movie was released</p>
+        <input type="file" accept="image/*" onChange={()=>setPicture()}/>
+      <img src={picture}/>
         
         
       </div>
@@ -118,8 +120,7 @@ const IndexPage = () => {
           </>
         )}
       </div>
-      <input type="file" accept="image/*" onChange={()=>setPicture()}/>
-      <img src={picture}/>
+      
 
     </div>
   )
