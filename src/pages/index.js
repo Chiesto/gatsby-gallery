@@ -15,6 +15,7 @@ const IndexPage = () => {
   const [rightAnswers, setRightAnswers] = useState([]);
   const [movieList, setMovieList] = useState([]);
   const [hint, setHint] = useState("")
+  const [picture, setPicture] = useState('')
 
   
   function generateRandomNumber(min, max) {
@@ -117,6 +118,9 @@ const IndexPage = () => {
           </>
         )}
       </div>
+      <input type="file" accept="image/*" onChange={()=>setPicture()}/>
+      <img src={picture}/>
+
     </div>
   )
 }
