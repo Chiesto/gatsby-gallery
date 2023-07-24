@@ -81,7 +81,7 @@ const IndexPage = () => {
   React.useEffect(()=>{
     fetchPictures();
   }, []);
-  
+  console.log('hello!');
   return (
     <div id="container">
       <div id="headerContainer">
